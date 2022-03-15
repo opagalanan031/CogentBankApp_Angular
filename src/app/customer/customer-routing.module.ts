@@ -9,6 +9,8 @@ import { ForgotPasswordComponent } from './component/layout/forgot-password/forg
 import { HomePageComponent } from './component/layout/home-page/home-page.component';
 import { RemoveBeneficiaryComponent } from './component/layout/remove-beneficiary/remove-beneficiary.component';
 import { TransferAmountComponent } from './component/layout/transfer-amount/transfer-amount.component';
+import { UpdatePasswordComponent } from './component/layout/update-password/update-password.component';
+import { UpdateProfileComponent } from './component/layout/update-profile/update-profile.component';
 import { ViewAccountsComponent } from './component/layout/view-accounts/view-accounts.component';
 import { ViewDashboardComponent } from './component/layout/view-dashboard/view-dashboard.component';
 import { ViewStatementComponent } from './component/layout/view-statement/view-statement.component';
@@ -29,6 +31,14 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+  },
+  {
+    path: 'update-password',
+    component: UpdatePasswordComponent,
+  },
+  {
+    path: 'update-profile',
+    component: UpdateProfileComponent,
   },
   {
     path: 'dashboard',
