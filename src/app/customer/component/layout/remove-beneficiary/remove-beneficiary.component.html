@@ -1,5 +1,7 @@
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="customer/dashboard"
+  <a
+    class="navbar-brand col-md-3 col-lg-2 me-0 px-3"
+    href="customer/update-profile"
     >Profile</a
   >
 
@@ -67,7 +69,32 @@
         <div class="btn-toolbar mb-2 mb-md-0"></div>
       </div>
 
-      <div>Function</div>
+      <div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Account #</th>
+              <th scope="col">Username</th>
+              <th scope="col">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12345</td>
+              <td>Oliver</td>
+              <td>
+                <input
+                  type="checkbox"
+                  class="btn-check"
+                  id="btn-check"
+                  autocomplete="off"
+                />
+                <label class="btn btn-primary" for="btn-check">-</label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </main>

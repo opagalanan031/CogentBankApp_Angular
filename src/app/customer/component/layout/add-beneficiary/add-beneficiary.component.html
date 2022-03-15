@@ -1,5 +1,7 @@
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="customer/dashboard"
+  <a
+    class="navbar-brand col-md-3 col-lg-2 me-0 px-3"
+    href="customer/update-profile"
     >Profile</a
   >
 
@@ -67,9 +69,66 @@
         <div class="btn-toolbar mb-2 mb-md-0"></div>
       </div>
 
-      <div>Function</div>
+      <div>
+        <form
+          (ngSubmit)="addBeneficiary()"
+          class="mt-5 border p-4 bg-light shadow needs-validation"
+          novalidate
+        >
+          <div class="row">
+            <div class="mb-3 col-md-7">
+              <input
+                type="text"
+                name="accountNo"
+                class="form-control"
+                placeholder="Enter Account Number"
+                required
+              />
+            </div>
+            <div class="mb-3 col-md-7">
+              <input
+                type="text"
+                name="confirmAccount"
+                class="form-control"
+                placeholder="Confirm Account"
+                required
+              />
+            </div>
+          </div>
 
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+          <div>
+            <h3>Select Type of Account</h3>
+          </div>
+
+          <div class="mb-3 col-md-10">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="amount"
+              id="amount1"
+              checked
+            />
+            <label class="form-check-label" for="amount1"> Savings Bank </label>
+          </div>
+          <div class="mb-3 col-md-10">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="amount"
+              id="amount2"
+            />
+            <label class="form-check-label" for="amount2">
+              Current Account
+            </label>
+          </div>
+
+          <div class="col-md-12">
+            <button class="btn btn-primary float-end">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <canvas class="my-4 w-100" id="myChart" width="900" height="450"></canvas>
     </main>
   </div>
 </div>

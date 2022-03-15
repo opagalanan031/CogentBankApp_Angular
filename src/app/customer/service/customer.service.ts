@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class CustomerService {
   // private baseUrl = 'http://localhost:9015/api/customer/';
-  //constructor(private _http: HttpClient) {}
+  // constructor(private _http: HttpClient) {}
   // register(register: object): Observable<any> {
   //   return this._http.post(`${this.baseUrl + 'register'}`, register);
-  // }
-  // login(login: object): Observable<any> {
+  //  }
+  //  login(login: object): Observable<any> {
   //  return this._http.post(`${this.baseUrl + 'authenticate'}`, login);
-  //}
+  // }
 }
