@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/customer/service/auth.service';
 
@@ -8,7 +14,7 @@ import { AuthService } from 'src/app/customer/service/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  form: any = {
+  formGroup: any = {
     username: null,
     fullName: null,
     password: null,
@@ -17,23 +23,60 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  constructor(private authService: AuthService, private router: Router) {}
+
+  passwordFormGroup: FormGroup;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
+    this.passwordFormGroup = this.formBuilder.group(
+      {
+        username: ['', [Validators.required]],
+        fullName: ['', [Validators.required]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(20),
+          ],
+        ],
+        passwordConfirmation: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(20),
+          ],
+        ],
+      },
+      {
+        validators: [
+          (form: AbstractControl) => {
+            const { password, passwordConfirmation } = form.value;
+            if (password !== passwordConfirmation) {
+              return {
+                notMatched: true,
+              };
+            } else {
+              return null;
+            }
+          },
+        ],
+      }
+    );
+  }
+  //
   ngOnInit(): void {}
   onSubmit(): void {
-    const { username, fullName, password, confirmPassword } = this.form;
+    const { username, fullName, password, confirmPassword } =
+      this.passwordFormGroup.value;
     this.authService
       .register(username, fullName, password, confirmPassword)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.isSuccessful = true;
-          this.isSignUpFailed = false;
-        },
-        (err) => {
-          this.errorMessage = err.error.message;
-          this.isSignUpFailed = true;
-        }
-      );
+      .subscribe((data) => {
+        console.log(data);
+      });
     this.gotoHome();
   }
 

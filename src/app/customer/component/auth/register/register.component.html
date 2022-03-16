@@ -8,6 +8,7 @@
         (ngSubmit)="f.form.valid && onSubmit()"
         #f="ngForm"
         novalidate
+        [formGroup]="passwordFormGroup"
       >
         <div class="mb-3 col-md-10">
           <label for="username">User Name</label>
@@ -15,9 +16,8 @@
             type="text"
             class="form-control"
             name="username"
-            [(ngModel)]="form.username"
             required
-            #username="ngModel"
+            formControlName="username"
           />
         </div>
 
@@ -27,44 +27,43 @@
             type="text"
             class="form-control"
             name="email"
-            [(ngModel)]="form.fullName"
             required
-            #fullName="ngModel"
+            formControlName="fullName"
           />
         </div>
-        <div class="mb-3 col-md-10">
+        <div class="mb-3 col-md-10 form-group">
           <label for="password">Password</label>
           <input
             type="password"
             class="form-control"
             name="password"
-            [(ngModel)]="form.password"
             required
-            #password="ngModel"
+            formControlName="password"
           />
         </div>
 
-        <div class="mb-3 col-md-10">
+        <div class="mb-3 col-md-10 form-group">
           <label for="confirmPassword">Confirm Password</label>
           <input
             type="password"
             class="form-control"
             name="confirmPassword"
-            [(ngModel)]="form.confirmPassword"
             required
-            #confirmPassword="ngModel"
+            formControlName="passwordConfirmation"
           />
         </div>
 
         <div class="col-md-12">
-          <button class="btn btn-primary float-center">Register</button>
+          <button class="btn btn-primary float-center" type="submit">
+            Register
+          </button>
         </div>
         <p class="text-center mt-3 text-secondary">
           If you have a Customer account, Please
           <a href="/customer/authenticate">Login Here</a>
         </p>
-        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-          Registration failed!<br />{{ errorMessage }}
+        <div class="alert alert-warning" *ngIf="f.submitted">
+          Registration failed!<br />
         </div>
       </form>
       <div class="alert alert-success" *ngIf="isSuccessful">
