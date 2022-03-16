@@ -5,7 +5,6 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { RegisterComponent } from './component/auth/register/register.component';
 import { HomePageComponent } from './component/layout/home-page/home-page.component';
 import { LoginComponent } from './component/auth/login/login.component';
-import { LogoutComponent } from './component/auth/logout/logout.component';
 import { ForgotPasswordComponent } from './component/layout/forgot-password/forgot-password.component';
 import { UpdatePasswordComponent } from './component/layout/update-password/update-password.component';
 import { ViewDashboardComponent } from './component/layout/view-dashboard/view-dashboard.component';
@@ -17,13 +16,14 @@ import { UpdateProfileComponent } from './component/layout/update-profile/update
 import { ViewAccountsComponent } from './component/layout/view-accounts/view-accounts.component';
 import { FormsModule } from '@angular/forms';
 import { ViewStatementComponent } from './component/layout/view-statement/view-statement.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     RegisterComponent,
     HomePageComponent,
     LoginComponent,
-    LogoutComponent,
     ForgotPasswordComponent,
     UpdatePasswordComponent,
     ViewDashboardComponent,
@@ -35,6 +35,12 @@ import { ViewStatementComponent } from './component/layout/view-statement/view-s
     ViewAccountsComponent,
     ViewStatementComponent,
   ],
-  imports: [CommonModule, FormsModule, CustomerRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CustomerRoutingModule,
+  ],
 })
 export class CustomerModule {}

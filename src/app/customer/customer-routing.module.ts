@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/auth/login/login.component';
-import { LogoutComponent } from './component/auth/logout/logout.component';
 import { RegisterComponent } from './component/auth/register/register.component';
 import { AddBeneficiaryComponent } from './component/layout/add-beneficiary/add-beneficiary.component';
 import { CreateAccountComponent } from './component/layout/create-account/create-account.component';
@@ -67,10 +66,6 @@ const routes: Routes = [
   {
     path: 'view-statement',
     component: ViewStatementComponent,
-  },
-  {
-    path: 'logout',
-    component: LogoutComponent,
   },
 ];
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from 'src/app/customer/service/customer.service';
-import { Register } from 'src/app/customer/model/register';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/customer/service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -9,33 +8,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  register: Register = new Register();
-  submitted = false;
-
-  constructor(
-    private customerService: CustomerService,
-    private router: Router
-  ) {}
-
+  form: any = {
+    username: null,
+    fullName: null,
+    password: null,
+    confirmPassword: null,
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+  constructor(private authService: AuthService, private router: Router) {}
   ngOnInit(): void {}
-
-  newCustomer(): void {
-    this.submitted = false;
-    this.register = new Register();
-  }
-
-  registerCustomer() {
-    // this.customerService.register(this.register).subscribe(
-    //  (data) => console.log(data),
-    //  (error) => console.log(error)
-    //);
-    this.register = new Register();
+  onSubmit(): void {
+    const { username, fullName, password, confirmPassword } = this.form;
+    this.authService
+      .register(username, fullName, password, confirmPassword)
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        (err) => {
+          this.errorMessage = err.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
     this.gotoHome();
-  }
-
-  registerSubmit() {
-    this.submitted = true;
-    this.registerCustomer();
   }
 
   gotoHome() {

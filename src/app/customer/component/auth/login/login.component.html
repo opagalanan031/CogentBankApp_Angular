@@ -1,32 +1,34 @@
 <h3 class="text-center">Login to your Account</h3>
 <div class="row">
-  <!-- Payload from register api from backend App -->
   <div class="col-md-6 offset-md-3">
-    <div class="login-form">
-      <form (ngSubmit)="loginSubmit()" class="mt-5 border p-4 bg-light shadow">
-        <h4 class="mb-5 text-secondary">Login</h4>
-
+    <div class="card card-container">
+      <form
+        *ngIf="!isLoggedIn"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate
+      >
         <div class="mb-3 col-md-10">
-          <label>User Name<span class="text-danger">*</span></label>
+          <label for="username">User Name</label>
           <input
             type="text"
-            name="username"
             class="form-control"
-            placeholder="Enter User Name"
+            name="username"
+            [(ngModel)]="form.username"
             required
-            [(ngModel)]="login.username"
+            #username="ngModel"
           />
         </div>
-
         <div class="mb-3 col-md-10">
-          <label>Password<span class="text-danger">*</span></label>
+          <label for="password">Password</label>
           <input
             type="password"
-            name="password"
             class="form-control"
-            placeholder="Enter Password"
+            name="password"
+            [(ngModel)]="form.password"
             required
-            [(ngModel)]="login.password"
+            #password="ngModel"
           />
         </div>
 
@@ -34,10 +36,25 @@
           <a href="/customer/forgot-password">Forgot Password</a>
           <button class="btn btn-primary float-end">Login</button>
         </div>
+        <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="f.submitted && isLoginFailed"
+          >
+            Login failed: {{ errorMessage }}
+          </div>
+        </div>
       </form>
       <p class="text-center mt-3 text-secondary">
         Not a Customer? <a href="/customer/register">Register Here</a>
       </p>
+      <div class="alert alert-success" *ngIf="isLoggedIn">
+        Logged in as {{ roles }}.
+        <p class="text-center mt-3 text-secondary">
+          <a href="/customer/dashboard">Go to Dashboard</a>
+        </p>
+      </div>
     </div>
   </div>
 </div>

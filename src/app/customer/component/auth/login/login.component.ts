@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Login } from 'src/app/customer/model/login';
-import { CustomerService } from 'src/app/customer/service/customer.service';
+import { AuthService } from 'src/app/customer/service/auth.service';
+import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -9,25 +9,44 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  login: Login = new Login();
-
+  form: any = {
+    username: null,
+    password: null,
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
   constructor(
-    private customerService: CustomerService,
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
     private router: Router
   ) {}
-
-  ngOnInit(): void {}
-
-  loginSubmit() {
-    this.authenticateCustomer();
+  ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
   }
-
-  authenticateCustomer() {
-    // this.customerService.login(this.login).subscribe(
-    //  (data) => console.log(data),
-    //   (error) => console.log(error)
-    // );
-    this.login = new Login();
+  onSubmit(): void {
+    const { username, password } = this.form;
+    this.authService.login(username, password).subscribe(
+      (data) => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
+      },
+      (err) => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
+  }
+  reloadPage(): void {
+    //window.location.reload();
     this.gotoDashboard();
   }
 

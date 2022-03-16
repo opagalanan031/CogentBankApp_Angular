@@ -6,13 +6,13 @@
   >
 
   <div class="navbar-nav">
-    <h4 style="color: white">Welcome username</h4>
+    <div class="nav-item text-nowrap">
+      <a href class="nav-link" (click)="logout()">Log Out</a>
+    </div>
   </div>
 
   <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="customer/authenticate">Log out</a>
-    </div>
+    <h4 style="color: white">Welcome {{ username }}</h4>
   </div>
 </header>
 
@@ -79,17 +79,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>12345</td>
-              <td>Oliver</td>
+            <tr *ngFor="let beneficiary of beneficiaries | async">
+              <td>{{ beneficiary.accountNumber }}</td>
+              <td>{{ beneficiary.username }}</td>
+
               <td>
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="btn-check"
-                  autocomplete="off"
-                />
-                <label class="btn btn-primary" for="btn-check">-</label>
+                <button
+                  (click)="deleteBeneficiary(beneficiary.id)"
+                  class="btn btn-danger"
+                >
+                  -
+                </button>
               </td>
             </tr>
           </tbody>

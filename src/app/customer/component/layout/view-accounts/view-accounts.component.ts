@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/customer/model/account';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { CustomerService } from 'src/app/customer/service/customer.service';
+import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
 
 @Component({
   selector: 'app-view-accounts',
@@ -7,13 +11,29 @@ import { Account } from 'src/app/customer/model/account';
   styleUrls: ['./view-accounts.component.css'],
 })
 export class ViewAccountsComponent implements OnInit {
-  account: Account = {
-    accountType: 'SB',
-    accountBalance: 1000,
-    enableStatus: 'Enabled',
-  };
+  accounts: Observable<Account[]> = this.reloadData();
+  isLoggedIn = false;
+  username?: string;
+  id?: number;
+  errorMessage = '';
 
-  constructor() {}
+  constructor(
+    private customerService: CustomerService,
+    private router: Router,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.username = user.username;
+      this.id = user.id;
+    }
+  }
+
+  reloadData(): Observable<Account[]> {
+    const user = this.tokenStorageService.getUser();
+    return this.customerService.getAccounts(user.id);
+  }
 }

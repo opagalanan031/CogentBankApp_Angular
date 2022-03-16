@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NewAccount } from 'src/app/customer/model/newAccount';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/customer/service/customer.service';
+import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
 
 @Component({
   selector: 'app-create-account',
@@ -9,31 +10,52 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   styleUrls: ['./create-account.component.css'],
 })
 export class CreateAccountComponent implements OnInit {
-  account: NewAccount = new NewAccount();
+  account: any = {
+    accountType: null,
+    amount: null,
+  };
+  isLoggedIn = false;
+  username?: string;
+  id?: number;
+  errorMessage = '';
 
   constructor(
     private customerService: CustomerService,
+    private tokenStorageService: TokenStorageService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
-
-  createAccount() {
-    console.log('Account created');
-    this.addAccount();
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.username = user.username;
+      this.id = user.id;
+    }
   }
 
-  addAccount() {
-    // this.customerService.addAccount(this.account).subscribe(
-    //  (data) => console.log(data),
-    //   (error) => console.log(error)
-    // );
-    this.account = new NewAccount();
+  onSubmit(): void {
+    const { accountType, amount } = this.account;
+    const user = this.tokenStorageService.getUser();
+
+    this.customerService.createAccount(user.id, accountType, amount).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (err) => {
+        this.errorMessage = err.error.message;
+      }
+    );
     this.gotoDashboard();
   }
 
   gotoDashboard() {
     this.router.navigate(['/customer/dashboard']);
     alert('Account added successfully!');
+  }
+
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
   }
 }

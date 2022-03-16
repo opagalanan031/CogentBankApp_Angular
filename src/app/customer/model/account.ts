@@ -1,5 +1,5 @@
-export interface Account {
-  accountType: string;
-  accountBalance: number;
-  enableStatus: string;
+export class Account {
+  accountType: string = '';
+  accountBalance: number = 0;
+  enableStatus: string = '';
 }

@@ -1,7 +1,15 @@
-<ul class="list-group">
-  <li class="list-group-item">{{ account }}</li>
-  <li class="list-group-item">{{ account }}</li>
-  <li class="list-group-item">{{ account }}</li>
-  <li class="list-group-item">{{ account }}</li>
-  <li class="list-group-item">{{ account }}</li>
-</ul>
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <table class="table table-striped" border="1">
+      <tbody>
+        <tr *ngFor="let account of accounts | async">
+          <td>
+            {{ account.accountType }}
+            {{ account.accountBalance }}
+            {{ account.enableStatus }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
