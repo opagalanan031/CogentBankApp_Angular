@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/customer/service/customer.service';
 import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
-import { BeneficiaryData } from 'src/app/customer/model/BeneficiaryData';
+import { BeneficiaryData } from 'src/app/customer/model/beneficiaryData';
 import { Observable } from 'rxjs';
 
 @Component({

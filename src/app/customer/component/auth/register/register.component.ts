@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
     username: null,
     fullName: null,
     password: null,
-    confirmPassword: null,
   };
   isSuccessful = false;
   isSignUpFailed = false;
@@ -70,10 +69,9 @@ export class RegisterComponent implements OnInit {
   //
   ngOnInit(): void {}
   onSubmit(): void {
-    const { username, fullName, password, confirmPassword } =
-      this.passwordFormGroup.value;
+    const { username, fullName, password } = this.passwordFormGroup.value;
     this.authService
-      .register(username, fullName, password, confirmPassword)
+      .register(username, fullName, password)
       .subscribe((data) => {
         console.log(data);
       });

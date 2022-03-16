@@ -6,13 +6,13 @@
   >
 
   <div class="navbar-nav">
-    <h4 style="color: white">Welcome username</h4>
+    <div class="nav-item text-nowrap">
+      <a href class="nav-link" (click)="logout()">Log Out</a>
+    </div>
   </div>
 
   <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="customer/authenticate">Log out</a>
-    </div>
+    <h4 style="color: white">Welcome {{ username }}</h4>
   </div>
 </header>
 
@@ -70,60 +70,63 @@
       </div>
 
       <div class="row g-2">
-        <div class="col-auto">
-          <div class="form-floating">
-            <select
-              class="form-select"
-              id="floatingSelectGrid"
-              aria-label="Floating label select example"
-            >
-              <option selected>Select to Accounts</option>
-              <!-- <option value=''>{{account.accountNumber}}</option> -->
-              <option value="1234">1234</option>
-              <option value="4567">4567</option>
-            </select>
-            <label for="floatingSelectGrid">Works with selects</label>
-          </div>
+        <div class="mb-3 col-md-5">
+          <select
+            class="form-select"
+            id="floatingSelectGrid"
+            aria-label="Floating label select example"
+          >
+            <!-- <option value=''>{{account.accountNumber}}</option> -->
+          </select>
         </div>
         <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3">Transfer</button>
+          <button type="submit" class="btn btn-primary mb-3">Show</button>
         </div>
       </div>
       <div>
-        <a>Account Number</a>
-        <a>Balance: 1,23,235</a>
+        <label><h6>Account Number:</h6></label>
+        {{ accountNo }}
       </div>
 
-      <table class="table">
+      <table class="table table-striped" border="1">
         <thead>
+          <td colspan="4">
+            <h5 style="text-align: center">Account Details</h5>
+          </td>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Date</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Cr/Db</th>
           </tr>
         </thead>
         <tbody>
+          <!--<tr *ngFor="let account of accounts | async">-->
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
-
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </main>
   </div>

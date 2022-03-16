@@ -5,8 +5,8 @@ export class UpdateCustomer {
   aadhar: string;
   secretQuestion: string;
   secretAnswer: string;
-  panImage: string;
-  aadharImage: string;
+  panImage: File;
+  aadharImage: File;
 
   constructor(
     fullName: string,
@@ -15,8 +15,8 @@ export class UpdateCustomer {
     aadhar: string,
     secretQuestion: string,
     secretAnswer: string,
-    panImage: string,
-    aadharImage: string
+    panImage: File,
+    aadharImage: File
   ) {
     this.fullName = fullName;
     this.phone = phone;

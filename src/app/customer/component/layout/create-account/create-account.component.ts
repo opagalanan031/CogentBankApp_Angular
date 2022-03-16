@@ -3,6 +3,7 @@ import { NewAccount } from 'src/app/customer/model/newAccount';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/customer/service/customer.service';
 import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { Account } from 'src/app/customer/model/account';
 
 @Component({
   selector: 'app-create-account',
@@ -14,6 +15,7 @@ export class CreateAccountComponent implements OnInit {
     accountType: null,
     amount: null,
   };
+  newAccount?: Account;
   isLoggedIn = false;
   username?: string;
   id?: number;
@@ -36,9 +38,13 @@ export class CreateAccountComponent implements OnInit {
 
   onSubmit(): void {
     const { accountType, amount } = this.account;
+
+    this.newAccount = new Account(accountType, amount);
+
+    console.log(this.newAccount);
     const user = this.tokenStorageService.getUser();
 
-    this.customerService.createAccount(user.id, accountType, amount).subscribe(
+    this.customerService.createAccount(user.id, this.newAccount).subscribe(
       (data) => {
         console.log(data);
       },
