@@ -69,7 +69,60 @@
         <div class="btn-toolbar mb-2 mb-md-0"></div>
       </div>
 
-      <div>Function</div>
+      <div class="row g-2">
+        <div class="col-auto">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelectGrid"
+              aria-label="Floating label select example"
+            >
+              <option selected>Select to Accounts</option>
+              <!-- <option value=''>{{account.accountNumber}}</option> -->
+              <option value="1234">1234</option>
+              <option value="4567">4567</option>
+            </select>
+            <label for="floatingSelectGrid">Works with selects</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Transfer</button>
+        </div>
+      </div>
+      <div>
+        <a>Account Number</a>
+        <a>Balance: 1,23,235</a>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
 
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </main>

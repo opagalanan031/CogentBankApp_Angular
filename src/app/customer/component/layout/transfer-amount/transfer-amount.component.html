@@ -69,8 +69,84 @@
         <div class="btn-toolbar mb-2 mb-md-0"></div>
       </div>
 
-      <div>Function</div>
+      <div>Select Source Accounts</div>
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <td>Account Number</td>
+            <td>Balance</td>
+            <td>Account Type</td>
+            <td>Select</td>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let account of accountList"> -->
+          <tr>
+            <!-- <td>{{ account.accountNumber }}</td>
+            <td>{{ account.accountBalance }}</td>
+            <td>{{ account.accountType }}</td> -->
+            <td>1234</td>
+            <td>100000.00</td>
+            <td>Personal</td>
+            <td class="round">
+              <input type="checkbox" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
+      <!-- <div>Select to Accounts</div>
+      <select name="accounts">
+        <option value=''>{{account.accountNumber}}</option>
+        <option value="1234">1234</option>
+        <option value="4567">4567</option>
+      </select>
+      <input
+        type="accountNumber"
+        name="accountNumber"
+        class="form-control"
+        placeholder="Enter Account Number"
+      /> -->
+
+      <div class="row g-2">
+        <div class="col-md">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelectGrid"
+              aria-label="Floating label select example"
+            >
+              <option selected>Select to Accounts</option>
+              <!-- <option value=''>{{account.accountNumber}}</option> -->
+              <option value="1234">1234</option>
+              <option value="4567">4567</option>
+            </select>
+            <label for="floatingSelectGrid">Works with selects</label>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              id="floatingInputGrid"
+              value="Enter Amount"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInputGrid"
+            value="Reason"
+          />
+        </div>
+      </div>
+
+      <button class="btn btn-primary float-end">Transfer</button>
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </main>
   </div>
