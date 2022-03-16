@@ -14,28 +14,26 @@ export class CustomerService {
   constructor(private _http: HttpClient) {}
 
   getAccounts(userId: number): Observable<any> {
-    return this._http.get(AUTH_API + ` ${userId}` + '/accounts');
+    return this._http.get(AUTH_API + `${userId}` + '/accounts', httpOptions);
   }
 
   createAccount(
     userId: number,
-    accountType: string,
-    amount: number
+    //accountType: string,
+    //amount: number
+    account: any
   ): Observable<any> {
     return this._http.post(
       AUTH_API + `${userId}` + '/accounts',
-      {
-        accountType,
-        amount,
-      },
+      account,
       httpOptions
     );
   }
 
   addBeneficiary(
+    userId: number,
     accountNumber: number,
-    accountType: string,
-    userId: number
+    accountType: string
   ): Observable<any> {
     return this._http.post(
       AUTH_API + `${userId}` + '/beneficiary',
@@ -60,7 +58,11 @@ export class CustomerService {
     );
   }
 
-  updateProfile(userId: number, value: any) {
+  transferAmount(transfer: any): Observable<any> {
+    return this._http.put(AUTH_API + 'transfer', transfer);
+  }
+
+  updateProfile(userId: number, value: any): Observable<any> {
     return this._http.put(AUTH_API + `${userId}`, value);
   }
 }

@@ -12,7 +12,6 @@ export class RegisterComponent implements OnInit {
     username: null,
     fullName: null,
     password: null,
-    confirmPassword: null,
   };
   isSuccessful = false;
   isSignUpFailed = false;
@@ -20,20 +19,18 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
   ngOnInit(): void {}
   onSubmit(): void {
-    const { username, fullName, password, confirmPassword } = this.form;
-    this.authService
-      .register(username, fullName, password, confirmPassword)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.isSuccessful = true;
-          this.isSignUpFailed = false;
-        },
-        (err) => {
-          this.errorMessage = err.error.message;
-          this.isSignUpFailed = true;
-        }
-      );
+    const { username, fullName, password } = this.form;
+    this.authService.register(username, fullName, password).subscribe(
+      (data) => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      (err) => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
     this.gotoHome();
   }
 
