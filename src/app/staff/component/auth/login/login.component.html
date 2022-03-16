@@ -1,0 +1,43 @@
+<h3 class="text-center">Login to your Account</h3>
+<div class="row">
+  <!-- Payload from register api from backend App -->
+  <div class="col-md-6 offset-md-3">
+    <div class="login-form">
+      <form (ngSubmit)="loginSubmit()" class="mt-5 border p-4 bg-light shadow">
+        <h4 class="mb-5 text-secondary">Login</h4>
+
+        <div class="mb-3 col-md-10">
+          <label>User Name<span class="text-danger">*</span></label>
+          <input
+            type="text"
+            name="username"
+            class="form-control"
+            placeholder="Enter User Name"
+            required
+            [(ngModel)]="login.username"
+          />
+        </div>
+
+        <div class="mb-3 col-md-10">
+          <label>Password<span class="text-danger">*</span></label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Enter Password"
+            required
+            [(ngModel)]="login.password"
+          />
+        </div>
+
+        <div class="col-md-12">
+          <a href="/staff/forgot-password">Forgot Password</a>
+          <button class="btn btn-primary float-end">Login</button>
+        </div>
+      </form>
+      <p class="text-center mt-3 text-secondary">
+        Not a Staff? <a href="/staff/register">Register Here</a>
+      </p>
+    </div>
+  </div>
+</div>
