@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
   }
 
   gotoHome() {
-    this.router.navigate(['/customer/authenticate']);
+    this.router.navigate(['/staff/authenticate']);
     alert('Customer Registered successfully!');
   }
 }
