@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
 
 @Component({
   selector: 'app-transfer-approve-acc',
@@ -6,13 +8,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transfer-approve-acc.component.css'],
 })
 export class TransferApproveAccComponent implements OnInit {
-  username = this.getUsername();
+  isLoggedIn = false;
+  username?: string;
+  id?: number;
+  roles?: string;
+  errorMessage = '';
 
-  constructor() {}
+  constructor(
+    private tokenStorageService: TokenStorageService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+      const staff = this.tokenStorageService.getUser();
+      this.roles = staff.roles;
 
-  getUsername(): string {
-    return 'Park';
+      this.username = staff.username;
+    }
+  }
+
+  logout(): void {
+    this.tokenStorageService.signOut();
+    // window.location.reload();
+    this.router.navigate(['/staff/authenticate']);
   }
 }

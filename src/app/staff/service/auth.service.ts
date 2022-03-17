@@ -21,7 +21,7 @@ export class AuthService {
       httpOptions
     );
   }
-  /*
+
   register(
     username: string,
     fullName: string,
@@ -37,5 +37,4 @@ export class AuthService {
       httpOptions
     );
   }
-  */
 }
