@@ -15,7 +15,7 @@ export class CustomerService {
   constructor(private _http: HttpClient) {}
 
   getAccounts(userId: number): Observable<any> {
-    return this._http.get(AUTH_API + `${userId}` + '/accounts', httpOptions);
+    return this._http.get(AUTH_API + `${userId}` + '/account', httpOptions);
   }
 
   createAccount(
@@ -51,7 +51,10 @@ export class CustomerService {
   }
 
   getBeneficiaries(userId: number): Observable<any> {
-    return this._http.get(AUTH_API + ` ${userId}` + '/beneficiary');
+    return this._http.get(
+      AUTH_API + ` ${userId}` + '/beneficiary',
+      httpOptions
+    );
   }
 
   deleteBeneficiary(userId: number, beneficiaryId: number): Observable<any> {
@@ -68,7 +71,7 @@ export class CustomerService {
   }
 
   updateProfile(userId: number, value: any): Observable<any> {
-    return this._http.put(AUTH_API + `${userId}`, value);
+    return this._http.put(AUTH_API + `${userId}`, JSON.stringify(value));
   }
 
   getDetails(

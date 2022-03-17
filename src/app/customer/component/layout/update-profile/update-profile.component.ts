@@ -66,6 +66,8 @@ export class UpdateProfileComponent implements OnInit {
       aadharImage
     );
 
+    console.log(this.updateCustomer.panImage);
+
     this.customerService.updateProfile(user.id, this.updateCustomer).subscribe(
       (data) => {
         console.log(data);

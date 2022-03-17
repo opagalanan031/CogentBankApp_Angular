@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/customer/service/customer.service';
 import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
-import { BeneficiaryData } from 'src/app/customer/model/beneficiaryData';
+import { Beneficiary } from 'src/app/customer/model/beneficiary';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./remove-beneficiary.component.css'],
 })
 export class RemoveBeneficiaryComponent implements OnInit {
-  beneficiaries: Observable<BeneficiaryData[]> = this.reloadData();
+  beneficiaries: Observable<Beneficiary[]> = this.reloadData();
 
   isLoggedIn = false;
   username?: string;
@@ -44,7 +44,7 @@ export class RemoveBeneficiaryComponent implements OnInit {
     );
   }
 
-  reloadData(): Observable<BeneficiaryData[]> {
+  reloadData(): Observable<Beneficiary[]> {
     const user = this.tokenStorageService.getUser();
     return this.customerService.getBeneficiaries(user.id);
   }

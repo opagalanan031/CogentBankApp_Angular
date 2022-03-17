@@ -81,11 +81,11 @@
           <tbody>
             <tr *ngFor="let beneficiary of beneficiaries | async">
               <td>{{ beneficiary.accountNumber }}</td>
-              <td>}</td>
+              <td>{{ beneficiary.username }}</td>
 
               <td>
                 <button
-                  (click)="deleteBeneficiary(beneficiary.id)"
+                  (click)="deleteBeneficiary(beneficiary.accountNumber)"
                   class="btn btn-danger"
                 >
                   -

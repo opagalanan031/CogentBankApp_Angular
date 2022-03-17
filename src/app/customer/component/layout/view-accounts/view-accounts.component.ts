@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from 'src/app/customer/model/account';
+import { Accounts } from 'src/app/customer/model/accounts';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/customer/service/customer.service';
@@ -11,7 +11,7 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
   styleUrls: ['./view-accounts.component.css'],
 })
 export class ViewAccountsComponent implements OnInit {
-  accounts: Observable<Account[]> = this.reloadData();
+  accounts: Observable<Accounts[]> = this.reloadData();
   isLoggedIn = false;
   username?: string;
   id?: number;
@@ -32,7 +32,7 @@ export class ViewAccountsComponent implements OnInit {
     }
   }
 
-  reloadData(): Observable<Account[]> {
+  reloadData(): Observable<Accounts[]> {
     const user = this.tokenStorageService.getUser();
     return this.customerService.getAccounts(user.id);
   }
