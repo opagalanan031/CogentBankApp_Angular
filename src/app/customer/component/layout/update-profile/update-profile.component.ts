@@ -69,12 +69,12 @@ export class UpdateProfileComponent implements OnInit {
     this.customerService.updateProfile(user.id, this.updateCustomer).subscribe(
       (data) => {
         console.log(data);
+        this.customerUpdated();
       },
       (err) => {
         this.errorMessage = err.error.message;
       }
     );
-    this.customerUpdated();
   }
 
   customerUpdated() {

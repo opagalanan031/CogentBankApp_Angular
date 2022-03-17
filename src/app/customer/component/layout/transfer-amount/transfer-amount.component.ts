@@ -57,6 +57,7 @@ export class TransferAmountComponent implements OnInit {
     this.customerService.transferAmount(this.transfer).subscribe(
       (data) => {
         console.log(data);
+        this.transfered();
       },
       (err) => {
         this.errorMessage = err.error.message;
@@ -67,6 +68,11 @@ export class TransferAmountComponent implements OnInit {
   reloadData(): Observable<Account[]> {
     const user = this.tokenStorageService.getUser();
     return this.customerService.getAccounts(user.id);
+  }
+
+  transfered() {
+    this.router.navigate(['/customer/dashboard']);
+    alert('Transfered successfully!');
   }
 
   logout(): void {

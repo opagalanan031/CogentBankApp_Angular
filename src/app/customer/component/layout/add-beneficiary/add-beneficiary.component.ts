@@ -43,12 +43,12 @@ export class AddBeneficiaryComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log(data);
+          this.beneficiaryAdded();
         },
         (err) => {
           this.errorMessage = err.error.message;
         }
       );
-    this.beneficiaryAdded();
   }
 
   beneficiaryAdded() {

@@ -15,7 +15,7 @@ export class CreateAccountComponent implements OnInit {
     accountType: null,
     amount: null,
   };
-  newAccount?: Account;
+  newAccount?: NewAccount;
   isLoggedIn = false;
   username?: string;
   id?: number;
@@ -39,20 +39,20 @@ export class CreateAccountComponent implements OnInit {
   onSubmit(): void {
     const { accountType, amount } = this.account;
 
-    this.newAccount = new Account(accountType, amount);
+    //this.newAccount = new NewAccount(accountType, amount);
 
     console.log(this.newAccount);
     const user = this.tokenStorageService.getUser();
-
-    this.customerService.createAccount(user.id, this.newAccount).subscribe(
+    console.log(user.id);
+    this.customerService.createAccount(user.id, accountType, amount).subscribe(
       (data) => {
         console.log(data);
+        this.gotoDashboard();
       },
       (err) => {
         this.errorMessage = err.error.message;
       }
     );
-    this.gotoDashboard();
   }
 
   gotoDashboard() {

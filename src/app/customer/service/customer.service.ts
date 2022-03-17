@@ -19,13 +19,12 @@ export class CustomerService {
 
   createAccount(
     userId: number,
-    //accountType: string,
-    //amount: number
-    account: any
+    accountType: string,
+    amount: number
   ): Observable<any> {
     return this._http.post(
       AUTH_API + `${userId}` + '/accounts',
-      account,
+      { accountType, amount },
       httpOptions
     );
   }
@@ -64,5 +63,23 @@ export class CustomerService {
 
   updateProfile(userId: number, value: any): Observable<any> {
     return this._http.put(AUTH_API + `${userId}`, value);
+  }
+
+  getDetails(
+    username: string,
+    secretQuestion: string,
+    secretAnswer: string
+  ): Observable<any> {
+    return this._http.get(
+      AUTH_API +
+        `${username + '/forgot'}/
+        ${secretQuestion}/${secretAnswer}`,
+
+      httpOptions
+    );
+  }
+
+  updatePassword(username: string, password: string): Observable<any> {
+    return this._http.put(AUTH_API + `${username}`, password);
   }
 }
