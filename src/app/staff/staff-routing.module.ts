@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/auth/login/login.component';
-import { LogoutComponent } from './component/auth/logout/logout.component';
 import { RegisterComponent } from './component/auth/register/register.component';
 import { DashboardComponent } from './component/layout/dashboard/dashboard.component';
 import { TransferApproveAccComponent } from './component/layout/transfer-approve-acc/transfer-approve-acc.component';
@@ -12,7 +11,6 @@ import { TransferByAccNumComponent } from './component/layout/transfer-by-acc-nu
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'authenticate', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
   { path: 'transfer-approve-acc', component: TransferApproveAccComponent },
   { path: 'transfer-approve-bnf', component: TransferApproveBnfComponent },
   { path: 'transfer-block-cust', component: TransferBlockCustComponent },

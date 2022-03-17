@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/staff/service/auth.service';
-import { TokenStorageService } from 'src/app/staff/service/token-storage.service';
+import { AuthService } from 'src/app/admin/service/auth.service';
+import { TokenStorageService } from 'src/app/admin/service/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -52,6 +52,6 @@ export class LoginComponent implements OnInit {
   }
 
   gotoDashboard() {
-    this.router.navigate(['/staff/dashboard']);
+    this.router.navigate(['/admin/create-staff']);
   }
 }

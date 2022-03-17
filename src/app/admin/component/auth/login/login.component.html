@@ -1,4 +1,4 @@
-<h3 class="text-center">Login as Staff</h3>
+<h3 class="text-center">Admin Login</h3>
 <div class="row">
   <div class="col-md-6 offset-md-3">
     <div class="card card-container">
@@ -46,12 +46,12 @@
         </div>
       </form>
       <p class="text-center mt-3 text-secondary">
-        Owning an account with us? <a href="">Login Here</a>
+        <a href="/admin/add-admin">Add Admin</a>
       </p>
       <div class="alert alert-success" *ngIf="isLoggedIn">
         Logged in as {{ roles }}.
         <p class="text-center mt-3 text-secondary">
-          <a href="/staff/dashboard">Go to Dashboard</a>
+          <a href="/admin/create-staff">Go to Dashboard</a>
         </p>
       </div>
     </div>
