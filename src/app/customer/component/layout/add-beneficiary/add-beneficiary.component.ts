@@ -11,7 +11,6 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
 export class AddBeneficiaryComponent implements OnInit {
   beneficiary: any = {
     accountNumber: null,
-    confirmAccount: null,
     accountType: null,
   };
   isLoggedIn = false;
@@ -35,8 +34,10 @@ export class AddBeneficiaryComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { accountType, accountNumber, confirmAccount } = this.beneficiary;
+    const { accountType, accountNumber } = this.beneficiary;
     const user = this.tokenStorageService.getUser();
+
+    console.log(accountType);
 
     this.customerService
       .addBeneficiary(user.id, accountNumber, accountType)

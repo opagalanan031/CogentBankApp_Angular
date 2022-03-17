@@ -1,5 +1,9 @@
 export class BeneficiaryData {
-  username: string = '';
-  accountNumber: number = 0;
+  accountNumber: number;
+  accountType: string;
   id: number = 0;
+
+  constructor() {
+    (this.accountType = ''), (this.accountNumber = 0);
+  }
 }

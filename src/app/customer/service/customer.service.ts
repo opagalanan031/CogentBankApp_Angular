@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NewAccount } from '../model/newAccount';
+import { BeneficiaryData } from '../model/beneficiaryData';
 const AUTH_API = 'http://localhost:9015/api/customer/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -22,9 +23,13 @@ export class CustomerService {
     accountType: string,
     amount: number
   ): Observable<any> {
+    var account: NewAccount = new NewAccount();
+    account.accountBalance = amount;
+    account.accountType = accountType;
+
     return this._http.post(
-      AUTH_API + `${userId}` + '/accounts',
-      { accountType, amount },
+      AUTH_API + `${userId}` + '/account',
+      JSON.stringify(account),
       httpOptions
     );
   }
@@ -34,12 +39,13 @@ export class CustomerService {
     accountNumber: number,
     accountType: string
   ): Observable<any> {
+    var beneficiary: BeneficiaryData = new BeneficiaryData();
+    beneficiary.accountNumber = accountNumber;
+    beneficiary.accountType = accountType;
+
     return this._http.post(
       AUTH_API + `${userId}` + '/beneficiary',
-      {
-        accountType,
-        accountNumber,
-      },
+      JSON.stringify(beneficiary),
       httpOptions
     );
   }
